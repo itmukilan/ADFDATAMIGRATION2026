@@ -15,8 +15,12 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().TABLE_NAME,'_',formatDateTime(utcNow(),'yyyyMMddHHmmss'),'.parquet')",
+					"type": "Expression"
+				},
 				"folderPath": {
-					"value": "@dataset().TABLE_NAME",
+					"value": "@concat(dataset().TABLE_NAME,'/',formatDateTime(utcNow(),'yyyy/MM/dd'))",
 					"type": "Expression"
 				},
 				"fileSystem": "retaildw"
