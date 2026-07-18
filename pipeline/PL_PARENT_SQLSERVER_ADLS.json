@@ -26,6 +26,25 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "ForEachSQLTABLE",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LKP_SQLSERVER_WATERMARK_DW",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LKP_SQLSERVER_WATERMARK_DW').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
