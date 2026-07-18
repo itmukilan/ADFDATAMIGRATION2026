@@ -32,6 +32,10 @@
 							"pipeline().parameters.TableName": {
 								"value": "@pipeline().parameters.TableName",
 								"type": "Expression"
+							},
+							"pipeline().parameters.WatermarkColumn": {
+								"value": "@pipeline().parameters.WatermarkColumn",
+								"type": "Expression"
 							}
 						}
 					}
