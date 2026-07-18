@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdubyproject008"
+		},
+		"LS_FILEMOVEPROJECT_connectionString": {
+			"value": ""
+		},
+		"LS_INPUT_BLOB_connectionString": {
+			"value": ""
+		},
+		"LS_INPUT_BLOB_ADLS_connectionString": {
+			"value": ""
+		},
+		"LS_INPUT_CSV_connectionString": {
+			"value": ""
+		},
+		"LS_INPUT_GETMETADATA_accountKey": {
+			"value": ""
+		},
+		"LS_INPUT_METADATA_accountKey": {
+			"value": ""
+		},
+		"LS_INPUT_MULTIPLE_CSV_connectionString": {
+			"value": ""
+		},
+		"LS_INPUT_SQLSERVER_ADLS_12_password": {
+			"value": ""
+		},
+		"LS_LOOKUP_FILTER_connectionString": {
+			"value": ""
+		},
+		"LS_MULTIPLE_CSV_OUTPUT_accountKey": {
+			"value": ""
+		},
+		"LS_OUTPUT_BINARY_accountKey": {
+			"value": ""
+		},
+		"LS_OUTPUT_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SP_CUSTOMER_password": {
+			"value": ""
+		},
+		"LS_INPUT_GETMETADATA_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_INPUT_METADATA_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_database": {
+			"value": "visionboardmigration"
+		},
+		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_userName": {
+			"value": "daddy"
+		},
+		"LS_MULTIPLE_CSV_OUTPUT_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_OUTPUT_BINARY_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_OUTPUT_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_SP_CUSTOMER_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"LS_SP_CUSTOMER_properties_typeProperties_database": {
+			"value": "visionboardmigration"
+		},
+		"LS_SP_CUSTOMER_properties_typeProperties_userName": {
+			"value": "daddy"
+		}
+	}
+}
