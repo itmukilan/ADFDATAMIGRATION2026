@@ -1,0 +1,21 @@
+{
+	"name": "LS_INPUT_SQLSERVER_ADLS_12",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "DESKTOP-EM052U2\\SQLEXPRESS",
+			"database": "visionboardmigration",
+			"encrypt": "optional",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "daddy",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmN2Q3MWUwYy1lMzUwLTRlMDQtOGI4OS04Yjg2MDM2YTM0MjgiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntimeSQLSERVER",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
