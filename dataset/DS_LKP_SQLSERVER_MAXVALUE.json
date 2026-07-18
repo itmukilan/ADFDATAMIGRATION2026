@@ -1,0 +1,42 @@
+{
+	"name": "DS_LKP_SQLSERVER_MAXVALUE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQLSERVER_MAXVALUE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pipeline().parameters.TableSchema": {
+				"type": "string"
+			},
+			"pipeline().parameters.TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TableSchema",
+				"type": "varchar"
+			},
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkColumn",
+				"type": "varchar"
+			},
+			{
+				"name": "LastLoadValue",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ADF_Watermark_Table"
+		}
+	}
+}
