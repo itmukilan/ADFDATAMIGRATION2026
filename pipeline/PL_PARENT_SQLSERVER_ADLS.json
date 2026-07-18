@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LKP_SQLSERVER_WATERMARK_DW').output.value",
+						"value": "@activity('LKP_SQLSERVER_WATERMARK_DW').output.vakue",
 						"type": "Expression"
 					},
 					"isSequential": false,
