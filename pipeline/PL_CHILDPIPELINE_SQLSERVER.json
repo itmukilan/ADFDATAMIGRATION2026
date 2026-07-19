@@ -42,7 +42,7 @@
 							}
 						}
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
