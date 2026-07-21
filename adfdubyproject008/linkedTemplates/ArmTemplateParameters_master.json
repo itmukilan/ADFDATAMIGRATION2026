@@ -29,6 +29,9 @@
 		"LS_INPUT_SQLSERVER_ADLS_12_password": {
 			"value": ""
 		},
+		"LS_LKP_MAXVALUE_password": {
+			"value": ""
+		},
 		"LS_LOOKUP_FILTER_connectionString": {
 			"value": ""
 		},
@@ -44,6 +47,30 @@
 		"LS_SP_CUSTOMER_password": {
 			"value": ""
 		},
+		"LS_SQLSERVER_MAXVALUE_password": {
+			"value": ""
+		},
+		"LS_SQLSERVER_TBLWMLKP_password": {
+			"value": ""
+		},
+		"LS_SQLSERVR_OUTPUT_PARQUET_accountKey": {
+			"value": ""
+		},
+		"LS_SQL_PARQUET_accountKey": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"AKV_daddy_properties_typeProperties_baseUrl": {
+			"value": "https://SQLPasswordDaddy.vault.azure.net/"
+		},
+		"AKY_SQLPassword_properties_typeProperties_baseUrl": {
+			"value": "https://SQLPasswordDaddy.vault.azure.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://AKYpasswordnew.vault.azure.net/"
+		},
 		"LS_INPUT_GETMETADATA_properties_typeProperties_url": {
 			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
 		},
@@ -57,6 +84,15 @@
 			"value": "visionboardmigration"
 		},
 		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_userName": {
+			"value": "daddy"
+		},
+		"LS_LKP_MAXVALUE_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"LS_LKP_MAXVALUE_properties_typeProperties_database": {
+			"value": "RetailDW_Dev"
+		},
+		"LS_LKP_MAXVALUE_properties_typeProperties_userName": {
 			"value": "daddy"
 		},
 		"LS_MULTIPLE_CSV_OUTPUT_properties_typeProperties_url": {
@@ -75,6 +111,39 @@
 			"value": "visionboardmigration"
 		},
 		"LS_SP_CUSTOMER_properties_typeProperties_userName": {
+			"value": "daddy"
+		},
+		"LS_SQLSERVER_MAXVALUE_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_MAXVALUE_properties_typeProperties_database": {
+			"value": "RetailDW_Dev"
+		},
+		"LS_SQLSERVER_MAXVALUE_properties_typeProperties_userName": {
+			"value": "daddy"
+		},
+		"LS_SQLSERVER_TBLWMLKP_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"LS_SQLSERVER_TBLWMLKP_properties_typeProperties_database": {
+			"value": "RetailDW_Dev"
+		},
+		"LS_SQLSERVER_TBLWMLKP_properties_typeProperties_userName": {
+			"value": "daddy"
+		},
+		"LS_SQLSERVR_OUTPUT_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"LS_SQL_PARQUET_properties_typeProperties_url": {
+			"value": "https://adlsdevdubyproject008.dfs.core.windows.net/"
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "DESKTOP-EM052U2\\SQLEXPRESS"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "RetailDW_Dev"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
 			"value": "daddy"
 		},
 		"containerUri": {

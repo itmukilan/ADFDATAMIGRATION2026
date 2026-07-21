@@ -51,9 +51,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_OUTPUT_PARQUET'"
 		},
-		"LS_INPUT_SQLSERVER_ADLS_12_password": {
+		"LS_SQLSERVR_OUTPUT_PARQUET_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_INPUT_SQLSERVER_ADLS_12'"
+			"metadata": "Secure string for 'accountKey' of 'LS_SQLSERVR_OUTPUT_PARQUET'"
+		},
+		"AKV_daddy_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://SQLPasswordDaddy.vault.azure.net/"
+		},
+		"AKY_SQLPassword_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://SQLPasswordDaddy.vault.azure.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AKYpasswordnew.vault.azure.net/"
 		},
 		"LS_INPUT_GETMETADATA_properties_typeProperties_url": {
 			"type": "string",
@@ -75,23 +87,54 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevdubyproject008.dfs.core.windows.net/"
 		},
-		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_server": {
+		"LS_SQLSERVR_OUTPUT_PARQUET_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "DESKTOP-EM052U2\\SQLEXPRESS"
-		},
-		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "visionboardmigration"
-		},
-		"LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "daddy"
+			"defaultValue": "https://adlsdevdubyproject008.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AKV_daddy')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AKV_daddy_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AKY_SQLPassword')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AKY_SQLPassword_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LS_FILEMOVEPROJECT')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -256,6 +299,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SQLSERVR_OUTPUT_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SQLSERVR_OUTPUT_PARQUET_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SQLSERVR_OUTPUT_PARQUET_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntimeSQLSERVER')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -264,6 +324,43 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_COPY_PARQUET')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SQLSERVR_OUTPUT_PARQUET",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"TABLE_NAME": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().TABLE_NAME,'_',formatDateTime(utcNow(),'yyyyMMddHHmmss'),'.parquet')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat(dataset().TABLE_NAME,'/',formatDateTime(utcNow(),'yyyy/MM/dd'))",
+							"type": "Expression"
+						},
+						"fileSystem": "retaildw"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SQLSERVR_OUTPUT_PARQUET')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DS_INPUT_BLOB')]",
@@ -360,143 +457,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_INPUT_GETMETADATA')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_INPUT_MULTIPLE_CSV')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_INPUT_MULTIPLE_CSV",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "csvinput"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "SIC_Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_INPUT_MULTIPLE_CSV')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_MULTIPLE_CSV_OUTPUT')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_MULTIPLE_CSV_OUTPUT",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "multiplecsvoutput"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_MULTIPLE_CSV_OUTPUT')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_OUTPUT_BINARY')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_OUTPUT_BINARY",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "output"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_OUTPUT_BINARY')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_OUTPUT_PARQUET')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_OUTPUT_PARQUET",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "csvoutput"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_OUTPUT_PARQUET')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_INPUT_SQLSERVER_ADLS_12')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"server": "[parameters('LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_server')]",
-					"database": "[parameters('LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_database')]",
-					"encrypt": "optional",
-					"trustServerCertificate": true,
-					"authenticationType": "SQL",
-					"userName": "[parameters('LS_INPUT_SQLSERVER_ADLS_12_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('LS_INPUT_SQLSERVER_ADLS_12_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "integrationRuntimeSQLSERVER",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntimeSQLSERVER')]"
 			]
 		}
 	]
