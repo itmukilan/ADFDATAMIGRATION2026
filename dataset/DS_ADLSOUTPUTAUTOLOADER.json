@@ -1,0 +1,21 @@
+{
+	"name": "DS_ADLSOUTPUTAUTOLOADER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLSOUTPUTAUTOLOADER",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
