@@ -62,6 +62,12 @@
 		"SqlServer1_password": {
 			"value": ""
 		},
+		"LS_AUTOLOADERINPUT_connectionString": {
+			"value": ""
+		},
+		"LS_ADLSOUTPUTAUTOLOADER_accountKey": {
+			"value": ""
+		},
 		"AKV_daddy_properties_typeProperties_baseUrl": {
 			"value": "https://SQLPasswordDaddy.vault.azure.net/"
 		},
@@ -145,6 +151,12 @@
 		},
 		"SqlServer1_properties_typeProperties_userName": {
 			"value": "daddy"
+		},
+		"LS_ADLSOUTPUTAUTOLOADER_properties_typeProperties_url": {
+			"value": "https://adlsautoloadersource.dfs.core.windows.net/"
+		},
+		"triggerfileuploader_properties_typeProperties_scope": {
+			"value": "/subscriptions/afb4ea90-445a-4adf-b559-992ca3ddcd28/resourceGroups/rg_dev_dubyproject/providers/Microsoft.Storage/storageAccounts/blobautoloadersource"
 		},
 		"containerUri": {
 			"value": ""

@@ -83,6 +83,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer1'"
 		},
+		"LS_AUTOLOADERINPUT_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_AUTOLOADERINPUT'"
+		},
+		"LS_ADLSOUTPUTAUTOLOADER_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLSOUTPUTAUTOLOADER'"
+		},
 		"AKV_daddy_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://SQLPasswordDaddy.vault.azure.net/"
@@ -195,6 +203,14 @@
 			"type": "string",
 			"defaultValue": "daddy"
 		},
+		"LS_ADLSOUTPUTAUTOLOADER_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsautoloadersource.dfs.core.windows.net/"
+		},
+		"triggerfileuploader_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/afb4ea90-445a-4adf-b559-992ca3ddcd28/resourceGroups/rg_dev_dubyproject/providers/Microsoft.Storage/storageAccounts/blobautoloadersource"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -258,6 +274,12 @@
 					"LS_SQLSERVR_OUTPUT_PARQUET_accountKey": {
 						"value": "[parameters('LS_SQLSERVR_OUTPUT_PARQUET_accountKey')]"
 					},
+					"LS_AUTOLOADERINPUT_connectionString": {
+						"value": "[parameters('LS_AUTOLOADERINPUT_connectionString')]"
+					},
+					"LS_ADLSOUTPUTAUTOLOADER_accountKey": {
+						"value": "[parameters('LS_ADLSOUTPUTAUTOLOADER_accountKey')]"
+					},
 					"AKV_daddy_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AKV_daddy_properties_typeProperties_baseUrl')]"
 					},
@@ -284,6 +306,9 @@
 					},
 					"LS_SQLSERVR_OUTPUT_PARQUET_properties_typeProperties_url": {
 						"value": "[parameters('LS_SQLSERVR_OUTPUT_PARQUET_properties_typeProperties_url')]"
+					},
+					"LS_ADLSOUTPUTAUTOLOADER_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLSOUTPUTAUTOLOADER_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -400,6 +425,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"triggerfileuploader_properties_typeProperties_scope": {
+						"value": "[parameters('triggerfileuploader_properties_typeProperties_scope')]"
 					}
 				}
 			},
