@@ -89,7 +89,8 @@
 						"linkedServiceName": {
 							"referenceName": "LS_AUTOLOADERINPUT",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"path": "input"
 					},
 					"enableLogging": true,
 					"storeSettings": {
