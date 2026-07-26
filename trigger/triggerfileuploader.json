@@ -1,0 +1,24 @@
+{
+	"name": "triggerfileuploader",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_CSV_ADLS_AUTOLOADER",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/afb4ea90-445a-4adf-b559-992ca3ddcd28/resourceGroups/rg_dev_dubyproject/providers/Microsoft.Storage/storageAccounts/blobautoloadersource",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
