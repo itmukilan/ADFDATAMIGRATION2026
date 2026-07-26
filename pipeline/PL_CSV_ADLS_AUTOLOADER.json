@@ -85,14 +85,7 @@
 						"referenceName": "DS_AUTOLOADERINPUT",
 						"type": "DatasetReference"
 					},
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "LS_AUTOLOADERINPUT",
-							"type": "LinkedServiceReference"
-						},
-						"path": "input"
-					},
-					"enableLogging": true,
+					"enableLogging": false,
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
